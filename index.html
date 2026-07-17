@@ -2,37 +2,105 @@
 <html lang="it">
 
 <head>
+    <meta charset="UTF-8">
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-<title>STA CLOCK</title>
+    <meta
+        name="theme-color"
+        content="#020814"
+    >
 
-<link rel="stylesheet" href="style.css">
+    <title>STA CLOCK</title>
 
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<div class="container">
+    <div class="glitter glitter-one"></div>
+    <div class="glitter glitter-two"></div>
+    <div class="glitter glitter-three"></div>
 
-<h3>STANDARD TEMPORAL ANTICIPATION</h3>
+    <header class="topbar">
 
-<h1 id="staTime">00:00</h1>
+        <div class="brand">
+            <span class="brand-star">★</span>
+            <span>STA CLOCK</span>
+        </div>
 
-<h2 id="staDate">Caricamento...</h2>
+        <div class="status">
+            PERSONAL TIME SYSTEM
+        </div>
 
-<div class="normal">
+    </header>
 
-<p>Ora normale</p>
+    <main>
 
-<span id="normalTime"></span>
+        <section class="hero">
 
-</div>
+            <p class="eyebrow">
+                STANDARD TEMPORAL ANTICIPATION
+            </p>
 
-</div>
+            <div class="clock-card">
 
-<script src="scripts.js?v=3"></script>
+                <p class="clock-label">
+                    STA TIME
+                </p>
+
+                <h1 id="staTime">
+                    00:00:00
+                </h1>
+
+                <p id="staDate" class="sta-date">
+                    -- / -- / ----
+                </p>
+
+                <div class="gold-line"></div>
+
+                <div class="local-time">
+
+                    <span>LOCAL TIME</span>
+
+                    <strong id="normalTime">
+                        00:00:00
+                    </strong>
+
+                </div>
+
+            </div>
+
+            <div class="statement">
+
+                <p>
+                    No vivo el tiempo del mundo.
+                </p>
+
+                <strong>
+                    Vivo el mío.
+                </strong>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer>
+
+        <span>BUENOS AIRES SOUL</span>
+
+        <span class="footer-star">★</span>
+
+        <span>MY TIME · MY RULES</span>
+
+    </footer>
+
+    <script src="scripts.js"></script>
 
 </body>
 
