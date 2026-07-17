@@ -1,1 +1,54 @@
 
+body{
+    margin:0;
+    background:#090909;
+    color:white;
+    font-family:Arial, Helvetica, sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.container{
+    text-align:center;
+    width:380px;
+}
+
+h3{
+    color:#c8a54b;
+    letter-spacing:4px;
+    font-weight:300;
+    margin-bottom:40px;
+}
+
+#staTime{
+    font-size:90px;
+    margin:0;
+    color:#f6d36a;
+}
+
+#staDate{
+    font-size:28px;
+    font-weight:300;
+    margin-top:15px;
+}
+
+.normal{
+    margin-top:50px;
+    padding:20px;
+    border:1px solid #333;
+    border-radius:20px;
+    background:#151515;
+}
+
+.normal p{
+    color:#888;
+    margin:0;
+}
+
+#normalTime{
+    display:block;
+    font-size:35px;
+    margin-top:10px;
+}
