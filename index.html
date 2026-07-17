@@ -1,109 +1,38 @@
 <!DOCTYPE html>
 <html lang="it">
+
 <head>
 
 <meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>STA CLOCK</title>
 
-<style>
-
-body{
-
-background:#090909;
-
-color:white;
-
-font-family:Arial,Helvetica,sans-serif;
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-height:100vh;
-
-margin:0;
-
-}
-
-#clock{
-
-text-align:center;
-
-}
-
-h1{
-
-font-size:70px;
-
-margin:0;
-
-color:#d4af37;
-
-}
-
-h2{
-
-font-size:30px;
-
-font-weight:300;
-
-margin-top:10px;
-
-}
-
-p{
-
-opacity:.6;
-
-}
-
-</style>
+<link rel="stylesheet" href="style.css">
 
 </head>
 
 <body>
 
-<div id="clock">
+<div class="container">
 
-<p>Sistema Temporale Anticipato</p>
+<h3>STANDARD TEMPORAL ANTICIPATION</h3>
 
-<h1 id="ora">00:00</h1>
+<h1 id="staTime">00:00</h1>
 
-<h2 id="giorno">Giorno STA</h2>
+<h2 id="staDate">Caricamento...</h2>
+
+<div class="normal">
+
+<p>Ora normale</p>
+
+<span id="normalTime"></span>
 
 </div>
 
-<script>
+</div>
 
-function aggiorna(){
-
-const now=new Date();
-
-document.getElementById("ora").innerHTML=
-
-now.getHours().toString().padStart(2,"0")+":"+
-
-now.getMinutes().toString().padStart(2,"0")+":"+
-
-now.getSeconds().toString().padStart(2,"0");
-
-document.getElementById("giorno").innerHTML=
-
-now.toDateString();
-
-}
-
-setInterval(aggiorna,1000);
-
-aggiorna();
-
-</script>
+<script src="scripts.js"></script>
 
 </body>
 
