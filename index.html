@@ -14,6 +14,11 @@
         content="#020814"
     >
 
+    <meta
+        name="description"
+        content="STA Clock — Standard Temporal Anticipation. Il mio tempo, le mie regole."
+    >
+
     <title>STA CLOCK</title>
 
     <link rel="stylesheet" href="style.css">
@@ -21,32 +26,81 @@
 
 <body>
 
+    <div class="city-glow" aria-hidden="true"></div>
+
+    <div class="obelisk" aria-hidden="true">
+        <div class="obelisk-tip"></div>
+        <div class="obelisk-body"></div>
+        <div class="obelisk-base"></div>
+    </div>
+
+    <div id="particles" class="particles" aria-hidden="true"></div>
+
+    <div
+        id="minuteFlash"
+        class="minute-flash"
+        aria-hidden="true"
+    ></div>
+
     <div class="glitter glitter-one"></div>
     <div class="glitter glitter-two"></div>
     <div class="glitter glitter-three"></div>
 
     <header class="topbar">
 
-        <div class="brand">
-            <span class="brand-star">★</span>
-            <span>STA CLOCK</span>
-        </div>
+        <a
+            class="brand"
+            href="#clock"
+            aria-label="STA Clock"
+        >
+
+            <span class="brand-symbol">
+                ✦
+            </span>
+
+            <span class="brand-text">
+
+                <strong>
+                    STA
+                </strong>
+
+                <small>
+                    CLOCK
+                </small>
+
+            </span>
+
+        </a>
 
         <div class="status">
-            PERSONAL TIME SYSTEM
+
+            <span class="status-dot"></span>
+
+            <span>
+                PERSONAL TIME SYSTEM
+            </span>
+
         </div>
 
     </header>
 
     <main>
 
-        <section class="hero">
+        <section
+            class="hero"
+            id="clock"
+        >
 
             <p class="eyebrow">
                 STANDARD TEMPORAL ANTICIPATION
             </p>
 
             <div class="clock-card">
+
+                <div
+                    class="card-shine"
+                    aria-hidden="true"
+                ></div>
 
                 <p class="clock-label">
                     STA TIME
@@ -56,15 +110,30 @@
                     00:00:00
                 </h1>
 
-                <p id="staDate" class="sta-date">
+                <p
+                    id="staDate"
+                    class="sta-date"
+                >
                     -- / -- / ----
                 </p>
+
+                <div class="future-badge">
+
+                    <span class="future-dot"></span>
+
+                    <span>
+                        VIVI 1H 10M NEL FUTURO
+                    </span>
+
+                </div>
 
                 <div class="gold-line"></div>
 
                 <div class="local-time">
 
-                    <span>LOCAL TIME</span>
+                    <span>
+                        LOCAL TIME
+                    </span>
 
                     <strong id="normalTime">
                         00:00:00
@@ -76,6 +145,8 @@
 
             <div class="statement">
 
+                <span class="statement-line"></span>
+
                 <p>
                     No vivo el tiempo del mundo.
                 </p>
@@ -83,6 +154,10 @@
                 <strong>
                     Vivo el mío.
                 </strong>
+
+                <small>
+                    Mi tiempo empieza donde termina el de todos.
+                </small>
 
             </div>
 
@@ -92,11 +167,17 @@
 
     <footer>
 
-        <span>BUENOS AIRES SOUL</span>
+        <span>
+            BUENOS AIRES SOUL
+        </span>
 
-        <span class="footer-star">★</span>
+        <span class="footer-star">
+            ✦
+        </span>
 
-        <span>MY TIME · MY RULES</span>
+        <span>
+            MY TIME · MY RULES
+        </span>
 
     </footer>
 
