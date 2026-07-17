@@ -1,82 +1,82 @@
+
 function aggiornaOrologio() {
     const adesso = new Date();
 
     // =========================
-    // ORA NORMALE
+    // PARAMETRI STA
     // =========================
 
-    const oreNormali = String(adesso.getHours()).padStart(2, "0");
-    const minutiNormali = String(adesso.getMinutes()).padStart(2, "0");
-    const secondiNormali = String(adesso.getSeconds()).padStart(2, "0");
-
-    document.getElementById("normalTime").textContent =
-        `${oreNormali}:${minutiNormali}:${secondiNormali}`;
-
-    // =========================
-    // PARAMETRI DEL TEMPO STA
-    // =========================
-
-    const ORE_STA_PER_GIORNO = 13;
-    const MINUTI_STA_PER_ORA = 60;
-    const SECONDI_STA_PER_MINUTO = 60;
-
-    // Il nuovo giorno STA comincia alle 22:50 normali
+    // Il giorno STA comincia alle 22:50 reali
     const INIZIO_STA_ORE = 22;
     const INIZIO_STA_MINUTI = 50;
 
-    const SECONDI_REALI_PER_GIORNO = 24 * 60 * 60;
+    const SECONDI_REALTA_PER_GIORNO_STA =
+        23 * 3600 + 50 * 60; // 23h50m = 85.800 secondi
+
+    const SECONDI_STA_PER_GIORNO =
+        24 * 3600; // 24h STA = 86.400 secondi STA
 
     const INIZIO_GIORNO_STA =
         INIZIO_STA_ORE * 3600 +
         INIZIO_STA_MINUTI * 60;
 
     // =========================
-    // TEMPO REALE TRASCORSO
+    // ORA NORMALE
     // =========================
 
-    const secondiRealiDaMezzanotte =
+    const oreNormali =
+        String(adesso.getHours()).padStart(2, "0");
+
+    const minutiNormali =
+        String(adesso.getMinutes()).padStart(2, "0");
+
+    const secondiNormali =
+        String(adesso.getSeconds()).padStart(2, "0");
+
+    document.getElementById("normalTime").textContent =
+        `${oreNormali}:${minutiNormali}:${secondiNormali}`;
+
+    // =========================
+    // SECONDI REALI TRASCORSI
+    // DALLE 22:50
+    // =========================
+
+    const secondiDaMezzanotte =
         adesso.getHours() * 3600 +
         adesso.getMinutes() * 60 +
         adesso.getSeconds() +
         adesso.getMilliseconds() / 1000;
 
-    // Tempo trascorso dalle 22:50
-    const secondiRealiTrascorsiSTA =
+    const trascorsoReale =
         (
-            secondiRealiDaMezzanotte -
+            secondiDaMezzanotte -
             INIZIO_GIORNO_STA +
-            SECONDI_REALI_PER_GIORNO
-        ) % SECONDI_REALI_PER_GIORNO;
+            24 * 3600
+        ) % (24 * 3600);
 
     // =========================
-    // CONVERSIONE IN TEMPO STA
+    // ACCELERAZIONE STA
     // =========================
 
-    const secondiSTAPerGiorno =
-        ORE_STA_PER_GIORNO *
-        MINUTI_STA_PER_ORA *
-        SECONDI_STA_PER_MINUTO;
+    const fattoreSTA =
+        SECONDI_STA_PER_GIORNO /
+        SECONDI_REALTA_PER_GIORNO_STA;
 
-    const secondiSTAtotali =
-        secondiRealiTrascorsiSTA *
-        secondiSTAPerGiorno /
-        SECONDI_REALI_PER_GIORNO;
+    let secondiSTAtotali =
+        trascorsoReale * fattoreSTA;
 
-    const oreSTA = Math.floor(
-        secondiSTAtotali /
-        (MINUTI_STA_PER_ORA * SECONDI_STA_PER_MINUTO)
-    );
+    // Evita di superare le 24:00 per piccoli errori numerici
+    secondiSTAtotali =
+        secondiSTAtotali % SECONDI_STA_PER_GIORNO;
 
-    const minutiSTA = Math.floor(
-        (
-            secondiSTAtotali %
-            (MINUTI_STA_PER_ORA * SECONDI_STA_PER_MINUTO)
-        ) / SECONDI_STA_PER_MINUTO
-    );
+    const oreSTA =
+        Math.floor(secondiSTAtotali / 3600);
 
-    const secondiSTA = Math.floor(
-        secondiSTAtotali % SECONDI_STA_PER_MINUTO
-    );
+    const minutiSTA =
+        Math.floor((secondiSTAtotali % 3600) / 60);
+
+    const secondiSTA =
+        Math.floor(secondiSTAtotali % 60);
 
     document.getElementById("staTime").textContent =
         `${String(oreSTA).padStart(2, "0")}:` +
@@ -89,8 +89,8 @@ function aggiornaOrologio() {
 
     const dataSTA = new Date(adesso);
 
-    // Dalle 22:50 normali, per STA è già domani
-    if (secondiRealiDaMezzanotte >= INIZIO_GIORNO_STA) {
+    // Dalle 22:50 è già il giorno seguente
+    if (secondiDaMezzanotte >= INIZIO_GIORNO_STA) {
         dataSTA.setDate(dataSTA.getDate() + 1);
     }
 
@@ -103,6 +103,5 @@ function aggiornaOrologio() {
         });
 }
 
-// Aggiornamento frequente per non perdere i secondi STA
 aggiornaOrologio();
 setInterval(aggiornaOrologio, 100);
