@@ -1,8 +1,8 @@
 function aggiornaOrologio() {
     const adesso = new Date();
 
-    const ORA_INIZIO_STA = 22;
-    const MINUTO_INIZIO_STA = 50;
+    // Il tempo STA è avanti di 1 ora e 10 minuti
+    const ANTICIPO_STA_MINUTI = 70;
 
     // =========================
     // ORA NORMALE
@@ -16,60 +16,23 @@ function aggiornaOrologio() {
         `${oreNormali}:${minutiNormali}:${secondiNormali}`;
 
     // =========================
-    // INIZIO DEL GIORNO STA
-    // =========================
-
-    let inizioGiornoSTA = new Date(adesso);
-
-    inizioGiornoSTA.setHours(
-        ORA_INIZIO_STA,
-        MINUTO_INIZIO_STA,
-        0,
-        0
-    );
-
-    // Se non sono ancora le 22:50,
-    // il giorno STA è iniziato ieri
-    if (adesso < inizioGiornoSTA) {
-        inizioGiornoSTA.setDate(
-            inizioGiornoSTA.getDate() - 1
-        );
-    }
-
-    // Tempo trascorso dall'inizio del giorno STA
-    const millisecondiTrascorsi =
-        adesso.getTime() - inizioGiornoSTA.getTime();
-
-    const secondiTotaliSTA =
-        Math.floor(millisecondiTrascorsi / 1000);
-
-    // =========================
     // ORA STA
     // =========================
 
-    const oreSTA =
-        Math.floor(secondiTotaliSTA / 3600) % 24;
+    const dataSTA = new Date(
+        adesso.getTime() + ANTICIPO_STA_MINUTI * 60 * 1000
+    );
 
-    const minutiSTA =
-        Math.floor((secondiTotaliSTA % 3600) / 60);
-
-    const secondiSTA =
-        secondiTotaliSTA % 60;
+    const oreSTA = String(dataSTA.getHours()).padStart(2, "0");
+    const minutiSTA = String(dataSTA.getMinutes()).padStart(2, "0");
+    const secondiSTA = String(dataSTA.getSeconds()).padStart(2, "0");
 
     document.getElementById("staTime").textContent =
-        `${String(oreSTA).padStart(2, "0")}:` +
-        `${String(minutiSTA).padStart(2, "0")}:` +
-        `${String(secondiSTA).padStart(2, "0")}`;
+        `${oreSTA}:${minutiSTA}:${secondiSTA}`;
 
     // =========================
     // DATA STA
     // =========================
-
-    const dataSTA = new Date(inizioGiornoSTA);
-
-    // Il giorno iniziato alle 22:50
-    // prende la data del giorno successivo
-    dataSTA.setDate(dataSTA.getDate() + 1);
 
     document.getElementById("staDate").textContent =
         dataSTA.toLocaleDateString("it-IT", {
